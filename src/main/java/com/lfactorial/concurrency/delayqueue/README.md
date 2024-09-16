@@ -1,1 +1,1 @@
-The delay queue is basically a priority queue of item  with a time to live. The item with earlier time to live appears in the front of the queue. 
+A delay queue is essentially a priority queue where each item has a time-to-live. Items with the shortest time-to-live are positioned at the front of the queue.
