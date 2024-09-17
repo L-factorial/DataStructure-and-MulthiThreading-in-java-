@@ -1,6 +1,6 @@
 package com.lfactorial.test.datastructure;
 
-import com.lfactorial.datastructure.IndexedPriorityQueue;
+import com.lfactorial.datastructure.indexedpq.IndexedPriorityQueue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

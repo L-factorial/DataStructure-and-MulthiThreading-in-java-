@@ -1,4 +1,4 @@
-package com.lfactorial.datastructure;
+package com.lfactorial.datastructure.indexedpq;
 
 import java.util.*;
 import java.util.function.Function;

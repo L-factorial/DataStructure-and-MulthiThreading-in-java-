@@ -1,0 +1,3 @@
+The IndexedPriorityQueue provides functionality similar to PriorityQueue, but with optimized search and removal operations for better performance. Unlike Java's PriorityQueue, where these operations can be inefficient, IndexedPriorityQueue offers logarithmic time complexity for updates and deletions, and constant time for searches.
+
+This is achieved by maintaining an index map that tracks the position of each key in the heap array. For search operations, the index map allows for constant-time lookups. For updates or deletions, the map is used to quickly locate the key's position, after which the swimUp or sinkDown operations are applied in logarithmic time to maintain heap order.
