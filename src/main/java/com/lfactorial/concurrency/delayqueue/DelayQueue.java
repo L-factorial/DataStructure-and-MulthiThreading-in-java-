@@ -1,6 +1,7 @@
 package com.lfactorial.concurrency.delayqueue;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.function.Consumer;
 
 public class DelayQueue {
 
@@ -9,7 +10,7 @@ public class DelayQueue {
         public Long time;
         public DelayedItem(String val, long time) {
             this.val = val;
-            this.time = time;
+            this.time = System.currentTimeMillis()+ time;
         }
     }
     PriorityQueue<DelayedItem> pq;
@@ -17,10 +18,12 @@ public class DelayQueue {
     int totalThreads;
     Thread thread;
     boolean running;
+    Consumer<String> dataDropAction;
 
-    public DelayQueue() {
+    public DelayQueue(Consumer<String> dataDropAction) {
         Comparator<DelayedItem> comparator = Comparator.comparing(di -> di.time);
         this.pq = new PriorityQueue<>(100, comparator);
+        this.dataDropAction = dataDropAction;
         lock = new Object();
         this.totalThreads = 5;
         try {
@@ -58,7 +61,8 @@ public class DelayQueue {
                         }
                     }
                     else if (item.time <= System.currentTimeMillis()) {
-                        pq.poll();
+                        DelayedItem delayedItem = pq.poll();
+                        dataDropAction.accept(delayedItem.val);
                         System.out.println(item.val);
                     } else {
                         try {
@@ -74,12 +78,12 @@ public class DelayQueue {
 
     }
     public static void main(String[] args) throws InterruptedException {
-        DelayQueue delayQueue = new DelayQueue();
-        delayQueue.add(new DelayedItem("1", System.currentTimeMillis()+6000));
-        delayQueue.add(new DelayedItem("2", System.currentTimeMillis()+5000));
-        delayQueue.add(new DelayedItem("3", System.currentTimeMillis()+4000));
-        delayQueue.add(new DelayedItem("4", System.currentTimeMillis()+3000));
-        delayQueue.add(new DelayedItem("5", System.currentTimeMillis()+2000));
+        DelayQueue delayQueue = new DelayQueue(i->{});
+        delayQueue.add(new DelayedItem("1", 6000));
+        delayQueue.add(new DelayedItem("2", 5000));
+        delayQueue.add(new DelayedItem("3", 4000));
+        delayQueue.add(new DelayedItem("4", 3000));
+        delayQueue.add(new DelayedItem("5", 2000));
 
 
         Thread.sleep(7000);
