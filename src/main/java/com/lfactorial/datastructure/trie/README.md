@@ -1,0 +1,1 @@
+A trie map for character literals with functionality to generate suggestion list for incorrect words.
