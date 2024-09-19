@@ -11,8 +11,24 @@ Please look at the [test](https://github.com/L-factorial/DataStructure-and-Multh
         trieMap.put("angel", "5");
         trieMap.put("angelo", "5");
         trieMap.put("angetb", "5");
+
         suggestions = trieMap.typoSuggestion("zappl", 2);
+        suggestions = trieMap.typoSuggestion("tppl", 2);
+        suggestions = trieMap.typoSuggestion("apdpzle", 2);
+
+
         
         In the above example the the words closest to "zappl" in 2 edits distance are: 
         appl ( one edit : which is attained by deleting z)
         apple( two edit : which is attained by deleting z and inserting l at the end)
+
+        Similarly the words closest to "tappl" in 2 edits distance are: 
+        appl( one edit : replace t with a)
+        apple(two edit: replace t with a, insert e at the end)
+
+        Similarly the words closest to "apdpzle" in 2 edits distance are:
+        apple(two edit: delete d , delete z)
+
+        
+
+

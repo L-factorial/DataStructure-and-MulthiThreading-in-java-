@@ -54,5 +54,14 @@ public class TrieMapTest {
         suggestions = trieMap.typoSuggestion("zappl", 2);
         expectedSuggestions = new HashSet<>(List.of("appl", "apple"));
         Assertions.assertEquals(suggestions, expectedSuggestions);
+
+        suggestions = trieMap.typoSuggestion("tppl", 2);
+        expectedSuggestions = new HashSet<>(List.of( "apple", "appl"));
+        Assertions.assertEquals(suggestions, expectedSuggestions);
+
+        suggestions = trieMap.typoSuggestion("apdpzle", 2);
+        expectedSuggestions = new HashSet<>(List.of( "apple" ));
+        Assertions.assertEquals(suggestions, expectedSuggestions);
+
     }
 }
